@@ -21,13 +21,20 @@ Using UART there is a known issue: https://lancaster-university.github.io/microb
 
 In short: if the connection is interrupted, or the Phyton program exits without sending the disconnection message, the "forever block" containing the "Bluetooth UART write" block seems to get stuck. Even after reconnection (or rather starting the Python program again), there is no way to read any data. This lead to the need to reset the micro:bit
 
-## Makecode project for UART
+## Makecode projects
 
-...
+Please remember that, every time you upload new code to the micro:bit, you have to pair again the device.
 
-## Makecode project for Temperature sensor
+### Makecode blocks for UART
 
-...
+![makecodeuart1](https://github.com/alcir/microbit-ble/raw/master/img/makeblock-uart2.png)
+
+Please note the reset block.
+In the Python program, if we will not receive any notification (aka data from UART) for a while, we will reset the device, then try to reconnect: this is a kind of workaround for the known issue described before. 
+
+### Makecode blocks for Temperature sensor
+
+![makecodetemp1[(https://github.com/alcir/microbit-ble/raw/master/img/makeblocktemp1.png)
 
 ## Pairing from Linux with bluetoothctl
 
@@ -98,6 +105,65 @@ Characteristic - Nordic UART TX
 Notify stopped
 </pre>
 
+### Using gatttool command
+
+To read the temperature value.
+
+<pre>
+$ sudo gatttool -b E4:6D:B6:FC:83:A8  -I -t random
+[XX:XX:XX:XX:XX:XX][LE]> connect 
+Attempting to connect to XX:XX:XX:XX:XX:XX
+Connection successful
+[XX:XX:XX:XX:XX:XX][LE]> primary 
+attr handle: 0x0001, end grp handle: 0x0007 uuid: 00001800-0000-1000-8000-00805f9b34fb
+attr handle: 0x0008, end grp handle: 0x000b uuid: 00001801-0000-1000-8000-00805f9b34fb
+attr handle: 0x000c, end grp handle: 0x000e uuid: e95d93b0-251d-470a-a062-fa1922dfa9a8
+attr handle: 0x000f, end grp handle: 0x0015 uuid: 0000180a-0000-1000-8000-00805f9b34fb
+attr handle: 0x0016, end grp handle: 0x0020 uuid: e95d93af-251d-470a-a062-fa1922dfa9a8
+attr handle: 0x0021, end grp handle: 0xffff uuid: e95d6100-251d-470a-a062-fa1922dfa9a8
+[XX:XX:XX:XX:XX:XX][LE]> char-desc 0x0021 0xffff
+handle: 0x0021, uuid: 00002800-0000-1000-8000-00805f9b34fb
+handle: 0x0022, uuid: 00002803-0000-1000-8000-00805f9b34fb
+handle: 0x0023, uuid: e95d9250-251d-470a-a062-fa1922dfa9a8
+handle: 0x0024, uuid: 00002902-0000-1000-8000-00805f9b34fb
+handle: 0x0025, uuid: 00002803-0000-1000-8000-00805f9b34fb
+handle: 0x0026, uuid: e95d1b25-251d-470a-a062-fa1922dfa9a8
+[XX:XX:XX:XX:XX:XX][LE]> char-read-hnd 0x0023
+Indication   handle = 0x000a value: 0c 00 ff ff 
+Characteristic value/descriptor: 19 
+</pre>
+
+To read the notification interval (Temperature Interval) of the temperature (when enabled, see below).
+
+<pre>
+[E4:6D:B6:FC:83:A8][LE]> char-read-hnd 0x0026
+Characteristic value/descriptor: e8 03
+</pre>
+
+`e8 08` that is 59395 milliseconds
+
+So to receive temperature updates (as seen before, every 1 second circa) we have to write `0100` to the Client Characteristic Configuration Descriptor (CCCD), and `0000` in order to stop notifications.
+
+<pre>
+[XX:XX:XX:XX:XX:XX][LE]> char-write-req 0x0024 0100
+Characteristic value was written successfully
+Notification handle = 0x0023 value: 19 
+Notification handle = 0x0023 value: 19 
+Notification handle = 0x0023 value: 19 
+Notification handle = 0x0023 value: 19 
+Notification handle = 0x0023 value: 19 
+Notification handle = 0x0023 value: 19 
+Notification handle = 0x0023 value: 19 
+Notification handle = 0x0023 value: 19 
+Notification handle = 0x0023 value: 19 
+[XX:XX:XX:XX:XX:XX][LE]> char-write-req 0x0024 0000
+Characteristic value was written successfully
+</pre>
+
+Please note: the value to write to the UART CCCD in order to enable notifications is `0200` and not `0100`
+
+## Bluetooth services and characteristics
+
 These are the services that we will use in the Python program.
 
 For UART
@@ -113,10 +179,10 @@ For temperature sensor
 
 | Type | UUID | Description |
 | ---- | ---- | ----------- |
-| Primary Service |  |  |
-| Descriptor      |  | Client Characteristic Configuration |
-| Characteristic  |  |  |
-| Characteristic  |  |  |
+| Primary Service | e95d6100-251d-470a-a062-fa1922dfa9a8 | MicroBit Temperature Service |
+| Descriptor      | 00002902-0000-1000-8000-00805f9b34fb | Client Characteristic Configuration |
+| Characteristic  | e95d9250-251d-470a-a062-fa1922dfa9a8 | Vendor specific (the temperature value) |
+| Characteristic  | e95d1b25-251d-470a-a062-fa1922dfa9a8 | MicroBit Temperature Period |
 
 ## Useful links
 
