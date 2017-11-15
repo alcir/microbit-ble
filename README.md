@@ -1,4 +1,4 @@
-# microbit-ble
+# Read micro:bit data from Linux via Bluetooth (BLE)
 
 How to read data from micro:bit via Bluetooth on Linux.
 
