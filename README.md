@@ -1,6 +1,6 @@
 # microbit-ble
 
-Read data from micro:bit using Bluetooth from Linux
+How to read data from micro:bit via Bluetooth on Linux.
 
 ## No /dev/ttySOMETHING for UART
 
