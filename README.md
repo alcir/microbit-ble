@@ -191,6 +191,7 @@ For temperature sensor
 - micro:bit Bluetooth profile specification: https://lancaster-university.github.io/microbit-docs/resources/bluetooth/bluetooth_profile.html
 - micro:bit Bluetooth UART Service: https://lancaster-university.github.io/microbit-docs/ble/uart-service/#bluetooth-uart-service
 - Makecode Bluetooth Pairing: https://makecode.microbit.org/reference/bluetooth/bluetooth-pairing
+- bluepy, a Bluetooth LE interface for Python documentation: http://ianharvey.github.io/bluepy-doc/
 
 ## Disclaimer
 
