@@ -9,9 +9,10 @@ class MyDelegate(btle.DefaultDelegate):
     def handleNotification(self, cHandle, data):
         print "A notification was received: {}".format(ord(data))
 
-p = btle.Peripheral("E4:6D:B6:FC:83:A8", btle.ADDR_TYPE_RANDOM)
+p = btle.Peripheral("XX:XX:XX:XX:XX:XX", btle.ADDR_TYPE_RANDOM)
 
-p.setSecurityLevel("medium")
+# Without this, the reading of the temperature characteristic fails 
+p.setSecurityLevel("medium")p.setSecurityLevel("medium")
 
 print "Debug Services..."
 for svc in p.services:
