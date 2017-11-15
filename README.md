@@ -133,6 +133,8 @@ Indication   handle = 0x000a value: 0c 00 ff ff
 Characteristic value/descriptor: 19 
 </pre>
 
+*19* is in sint8, that is 25 in decimal.
+
 To read the notification interval (Temperature Interval) of the temperature (when enabled, see below).
 
 <pre>
