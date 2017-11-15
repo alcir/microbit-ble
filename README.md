@@ -27,14 +27,14 @@ Please remember that, every time you upload new code to the micro:bit, you have 
 
 ### Makecode blocks for UART
 
-![makecodeuart1](https://github.com/alcir/microbit-ble/raw/master/img/makeblock-uart2.png)
+![makecodeuart1](https://github.com/alcir/microbit-ble/raw/master/img/makeblockuart2.png)
 
 Please note the reset block.
 In the Python program, if we will not receive any notification (aka data from UART) for a while, we will reset the device, then try to reconnect: this is a kind of workaround for the known issue described before. 
 
 ### Makecode blocks for Temperature sensor
 
-![makecodetemp1[(https://github.com/alcir/microbit-ble/raw/master/img/makeblocktemp1.png)
+![makecodetemp1](https://github.com/alcir/microbit-ble/raw/master/img/makeblocktemp1.png)
 
 ## Pairing from Linux with bluetoothctl
 
@@ -140,7 +140,7 @@ To read the notification interval (Temperature Interval) of the temperature (whe
 Characteristic value/descriptor: e8 03
 </pre>
 
-`e8 08` that is 59395 milliseconds
+`e8 08` that is 59395 milliseconds (UINT16 - Big Endian (AB))
 
 So to receive temperature updates (as seen before, every 1 second circa) we have to write `0100` to the Client Characteristic Configuration Descriptor (CCCD), and `0000` in order to stop notifications.
 
