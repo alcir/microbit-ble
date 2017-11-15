@@ -189,7 +189,8 @@ For temperature sensor
 ## Useful links
 
 - micro:bit Bluetooth profile specification: https://lancaster-university.github.io/microbit-docs/resources/bluetooth/bluetooth_profile.html
-- Makecode Bluetooth Pairing https://makecode.microbit.org/reference/bluetooth/bluetooth-pairing
+- micro:bit Bluetooth UART Service: https://lancaster-university.github.io/microbit-docs/ble/uart-service/#bluetooth-uart-service
+- Makecode Bluetooth Pairing: https://makecode.microbit.org/reference/bluetooth/bluetooth-pairing
 
 ## Disclaimer
 
