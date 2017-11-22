@@ -195,8 +195,8 @@ For the accelerometer
 | Characteristic | e95dca4b-251d-470a-a062-fa1922dfa9a8 | MicroBit Accelerometer Data |
 | Characteristic | e95dfb24-251d-470a-a062-fa1922dfa9a8 | MicroBit Accelerometer Period |
 
-Accelerometer Data _contains accelerometer measurements for X, Y and Z axes as 3 signed 16 bit values in that order and in little endian format_.
-MicroBit Accelerometer Period _determines the frequency with which accelerometer data is reported in milliseconds; valid values are 1, 2, 5, 10, 20, 80, 160 and 640_ So "8002" is 640, "A000" is 160, "1400" is 20, "0200" is 2 and so on. Note: 1 millisecond (that is "0100") seems to be invalid.
+Accelerometer Data _contains accelerometer measurements for X, Y and Z axes as 3 signed 16 bit values in that order and in little endian format_.<br/>
+MicroBit Accelerometer Period _determines the frequency with which accelerometer data is reported in milliseconds; valid values are 1, 2, 5, 10, 20, 80, 160 and 640_. So "8002" is 640, "A000" is 160, "1400" is 20, "0200" is 2 and so on. Note: 1 millisecond (that is "0100") seems to be invalid.
 
 ## Useful links
 
