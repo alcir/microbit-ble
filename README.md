@@ -186,6 +186,18 @@ For temperature sensor
 | Characteristic  | e95d9250-251d-470a-a062-fa1922dfa9a8 | Vendor specific (the temperature value) |
 | Characteristic  | e95d1b25-251d-470a-a062-fa1922dfa9a8 | MicroBit Temperature Period |
 
+For the accelerometer
+
+| Type | UUID | Description |
+| ---- | ---- | ----------- |
+| Primary Service | e95d0753-251d-470a-a062-fa1922dfa9a8 | MicroBit Accelerometer Service |
+| Descriptor | 00002902-0000-1000-8000-00805f9b34fb | Client Characteristic Configuration |
+| Characteristic | e95dca4b-251d-470a-a062-fa1922dfa9a8 | MicroBit Accelerometer Data |
+| Characteristic | e95dfb24-251d-470a-a062-fa1922dfa9a8 | MicroBit Accelerometer Period |
+
+Accelerometer Data _contains accelerometer measurements for X, Y and Z axes as 3 signed 16 bit values in that order and in little endian format_.
+MicroBit Accelerometer Period _determines the frequency with which accelerometer data is reported in milliseconds; valid values are 1, 2, 5, 10, 20, 80, 160 and 640_ So "8002" is 640, "A000" is 160, "1400" is 20, "0200" is 2 and so on. Note: 1 millisecond (that is "0100") seems to be invalid.
+
 ## Useful links
 
 - micro:bit Bluetooth profile specification: https://lancaster-university.github.io/microbit-docs/resources/bluetooth/bluetooth_profile.html
