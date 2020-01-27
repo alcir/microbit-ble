@@ -12,7 +12,7 @@ class MyDelegate(btle.DefaultDelegate):
 p = btle.Peripheral("XX:XX:XX:XX:XX:XX", btle.ADDR_TYPE_RANDOM)
 
 # Without this, the reading of the temperature characteristic fails 
-p.setSecurityLevel("medium")p.setSecurityLevel("medium")
+p.setSecurityLevel("medium")
 
 print "Debug Services..."
 for svc in p.services:
