@@ -9,6 +9,10 @@ kbdDevice="/dev/input/by-path/your_keyboard"
 # This is the MAC address of the microbit
 device_mac="XX:XX:XX:XX:XX:XX"
 
+# handle for button A
+handleA = 0
+# handle for button B
+handleB = 0
 
 class MyDelegate(btle.DefaultDelegate):
     def __init__(self):
@@ -16,12 +20,12 @@ class MyDelegate(btle.DefaultDelegate):
 
     def handleNotification(self, cHandle, data):
         # print "A notification was received: {}".format(ord(data))
-        if(cHandle == 35 and ord(data) == 1):
+        if(cHandle == handleA and ord(data) == 1):
             print ("Button A")
             subprocess.call(["evemu-event", kbdDevice, "--type", "EV_KEY", "--code", "KEY_LEFT", "--value", "1", "--sync"])
             subprocess.call(["evemu-event", kbdDevice, "--type", "EV_KEY", "--code", "KEY_LEFT", "--value", "0", "--sync"])
 
-        elif(cHandle == 38 and ord(data) == 1):
+        elif(cHandle == handleB and ord(data) == 1):
             print ("Button B")
             subprocess.call(["evemu-event", kbdDevice, "--type", "EV_KEY", "--code", "KEY_RIGHT", "--value", "1", "--sync"])
             subprocess.call(["evemu-event", kbdDevice, "--type", "EV_KEY", "--code", "KEY_RIGHT", "--value", "0", "--sync"])
@@ -74,6 +78,11 @@ class microbitCollector(Thread):
 
                     ch_cccdB = chB.getDescriptors(forUUID=CCCD_UUID)[0]
                     ch_cccdB.write(b"\x01\x00", False)
+
+                    global handleA
+                    handleA = chA.getHandle()
+                    global handleB
+                    handleB = chB.getHandle()
 
                     self.conn.setDelegate(MyDelegate())
 
