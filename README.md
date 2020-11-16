@@ -35,6 +35,7 @@ In the Python program, if we will not receive any notification (aka data from UA
 ### Makecode blocks for Temperature sensor
 
 ![makecodetemp1](https://github.com/alcir/microbit-ble/raw/master/img/makeblocktemp1.png)
+![makecodetemp1](https://github.com/ngammarano/microbit-ble/raw/master/img/temperature_sensor.svg)
 
 Link to the MakeCode project: [https://makecode.microbit.org/_6fT9haLmrFkC](https://makecode.microbit.org/_6fT9haLmrFkC).
 
