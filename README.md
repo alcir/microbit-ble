@@ -19,20 +19,20 @@ In order to get data from UART, you have to enable notification, writing "0200" 
 
 Using UART there is a known issue: https://lancaster-university.github.io/microbit-docs/ble/uart-service/#example-microbit-application-animal-vegetable-mineral-game *[...] This prevents the event handler from exiting. Under normal circumstances this is fine. If however the connected application loses its connection and then reconnects, the onConnected method will not execute and therefore the 'connected' variable which tracks the Bluetooth connection state will not update. The micro:bit application will now behave as though it is not in a connection and therefore functions such as sending text by pressing a button will not work. In this situation the user should simply reset their micro:bit and reconnect their smartphone application. An API which allows serial reads to unblock or perhaps threads to be terminated is under consideration for a future release of the micro:bit runtime.*"
 
-In short: if the connection is interrupted, or the Phyton program exits without sending the disconnection message, the "forever block" containing the "Bluetooth UART write" block seems to get stuck. Even after reconnection (or rather starting the Python program again), there is no way to read any data. This lead to the need to reset the micro:bit
+In short: if the connection is interrupted, or the Phyton program exits without sending the disconnection message, the "forever block" containing the "Bluetooth UART write" block seems to get stuck. Even after reconnection (or rather starting the Python program again), there is no way to read any data. This lead to the need to reset the micro:bit.
 
-## Makecode projects
+## MakeCode projects
 
 Please remember that, every time you upload new code to the micro:bit, you have to pair again the device.
 
-### Makecode blocks for UART
+### MakeCode blocks for UART
 
 ![makecodeuart1](img/makeblockuart4.png)
 
 Please note the reset block.
 In the Python program, if we will not receive any notification (aka data from UART) for a while, we will reset the device, then try to reconnect: this is a kind of workaround for the known issue described before. 
 
-### Makecode blocks for Temperature sensor
+### MakeCode blocks for Temperature sensor
 
 ![makecodetemp1](img/makeblocktemp1.svg)
 
@@ -40,7 +40,7 @@ Link to the MakeCode project: [https://makecode.microbit.org/_6fT9haLmrFkC](http
 
 ## Pairing from Linux with bluetoothctl
 
-See Makecode Bluetooth Pairing for instructions on how to put the micro:bit pairing mode (A+B, + reset, release reset, release A+B)
+See MakeCode Bluetooth Pairing for instructions on how to put the micro:bit pairing mode (A+B, + reset, release reset, release A+B).
 
 <pre>
 $ bluetoothctl
@@ -204,7 +204,7 @@ MicroBit Accelerometer Period _determines the frequency with which accelerometer
 
 - micro:bit Bluetooth profile specification: https://lancaster-university.github.io/microbit-docs/resources/bluetooth/bluetooth_profile.html
 - micro:bit Bluetooth UART Service: https://lancaster-university.github.io/microbit-docs/ble/uart-service/#bluetooth-uart-service
-- Makecode Bluetooth Pairing: https://makecode.microbit.org/reference/bluetooth/bluetooth-pairing
+- MakeCode Bluetooth Pairing: https://makecode.microbit.org/reference/bluetooth/bluetooth-pairing
 - bluepy, a Bluetooth LE interface for Python documentation: http://ianharvey.github.io/bluepy-doc/
 
 ## Disclaimer
