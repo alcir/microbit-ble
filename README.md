@@ -29,6 +29,8 @@ Please remember that, every time you upload new code to the micro:bit, you have 
 
 ![makecodeuart1](img/makeblockuart4.svg)
 
+Link to the MakeCode project: [https://makecode.microbit.org/_XXD3iuF36HCF](https://makecode.microbit.org/_XXD3iuF36HCF).
+
 Please note the reset block.
 In the Python program, if we will not receive any notification (aka data from UART) for a while, we will reset the device, then try to reconnect: this is a kind of workaround for the known issue described before. 
 
