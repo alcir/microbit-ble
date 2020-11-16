@@ -36,6 +36,8 @@ In the Python program, if we will not receive any notification (aka data from UA
 
 ![makecodetemp1](https://github.com/alcir/microbit-ble/raw/master/img/makeblocktemp1.png)
 
+Link to the MakeCode project: [https://makecode.microbit.org/_6fT9haLmrFkC](https://makecode.microbit.org/_6fT9haLmrFkC).
+
 ## Pairing from Linux with bluetoothctl
 
 See Makecode Bluetooth Pairing for instructions on how to put the micro:bit pairing mode (A+B, + reset, release reset, release A+B)
@@ -207,4 +209,4 @@ MicroBit Accelerometer Period _determines the frequency with which accelerometer
 
 ## Disclaimer
 
-I'm not a Python developer and my knowledge of Bluethoot protocol is close to zero. So sorry for the imperfections.
+I'm not a Python developer and my knowledge of Bluetooth protocol is close to zero. So sorry for the imperfections.
