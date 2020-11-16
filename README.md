@@ -27,15 +27,14 @@ Please remember that, every time you upload new code to the micro:bit, you have 
 
 ### Makecode blocks for UART
 
-![makecodeuart1](https://github.com/alcir/microbit-ble/raw/master/img/makeblockuart4.png)
+![makecodeuart1](img/makeblockuart4.png)
 
 Please note the reset block.
 In the Python program, if we will not receive any notification (aka data from UART) for a while, we will reset the device, then try to reconnect: this is a kind of workaround for the known issue described before. 
 
 ### Makecode blocks for Temperature sensor
 
-![makecodetemp1](img/makeblocktemp1.png)
-![makecodetemp1](img/temperature_sensor.svg)
+![makecodetemp1](img/makeblocktemp1.svg)
 
 Link to the MakeCode project: [https://makecode.microbit.org/_6fT9haLmrFkC](https://makecode.microbit.org/_6fT9haLmrFkC).
 
